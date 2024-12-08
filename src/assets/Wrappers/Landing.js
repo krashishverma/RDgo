@@ -1,4 +1,3 @@
-// styled/SplashPageStyles.js
 import styled, { keyframes } from "styled-components";
 
 // Keyframes for animations
@@ -20,6 +19,11 @@ export const Container = styled.div`
   background-color: #f0f8ff;
   overflow: hidden;
   position: relative;
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const Logo = styled.h1`
@@ -34,10 +38,20 @@ export const Logo = styled.h1`
     0% { opacity: 0; }
     100% { opacity: 1; }
   }
+
+  @media (max-width: 768px) {
+    font-size: 3rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2rem;
+  }
 `;
+
 export const Vehicle = styled.img`
   position: absolute;
-  width: 100px;
+  width: 200px;
+  max-width: 100%;
 
   &.car {
     bottom: 20%;
@@ -47,5 +61,13 @@ export const Vehicle = styled.img`
   &.bike {
     top: 20%;
     animation: ${moveRightToLeft} 3s linear infinite;
+  }
+
+  @media (max-width: 768px) {
+    width: 150px;
+  }
+
+  @media (max-width: 480px) {
+    width: 120px;
   }
 `;

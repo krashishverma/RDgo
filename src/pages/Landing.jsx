@@ -2,7 +2,7 @@
 // SplashPage.js
 import React, { useState, useEffect } from "react";
 import car from "../assets/images/bike.png";
-import bike from "../assets/images/car.jpeg";
+import bike from "../assets/images/car.png";
 import { Container, Logo, Vehicle } from "../assets/Wrappers/Landing";
 
 const Landing = ({ onSplashEnd }) => {
