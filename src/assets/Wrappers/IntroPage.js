@@ -1,61 +1,60 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
   text-align: center;
-  background-color: #f9f9f9;
-  padding: 1rem;
+  overflow: hidden;
 
   @media (max-width: 768px) {
-    height: auto;
-    padding: 2rem;
+    padding: 1rem;
   }
 `;
 
+export const Background = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("src/assets/images/vil.jpg") no-repeat center center;
+  background-size: cover;
+  filter: blur(8px) brightness(0.7);
+  z-index: -1;
+`;
+
 export const Illustration = styled.img`
-  width: 300px;
-  margin-bottom: 1.5rem;
+  width: 250px;
+  margin-bottom: 1rem;
 
   @media (max-width: 768px) {
-    width: 250px;
-  }
-
-  @media (max-width: 480px) {
     width: 200px;
   }
 `;
 
 export const Heading = styled.h1`
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: bold;
-  color: #333;
+  color: #fff;
   margin-bottom: 1rem;
 
   @media (max-width: 768px) {
-    font-size: 1.3rem;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 1.1rem;
+    font-size: 1.4rem;
   }
 `;
 
 export const SubHeading = styled.p`
   font-size: 1rem;
-  color: gray;
+  color: #e0e0e0;
   margin-bottom: 2rem;
 
   @media (max-width: 768px) {
     font-size: 0.9rem;
     margin-bottom: 1.5rem;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 0.8rem;
   }
 `;
 
@@ -69,19 +68,13 @@ export const Button = styled.button`
   cursor: pointer;
   outline: none;
   text-transform: uppercase;
-  transition: background 0.3s ease;
 
   &:hover {
     background: linear-gradient(90deg, #182848, #4b6cb7);
   }
 
   @media (max-width: 768px) {
-    padding: 0.7rem 1.5rem;
     font-size: 0.9rem;
-  }
-
-  @media (max-width: 480px) {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.8rem;
+    padding: 0.6rem 1.5rem;
   }
 `;

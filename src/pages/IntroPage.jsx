@@ -2,6 +2,7 @@
 import React from "react";
 import {
   Container,
+  Background,
   Illustration,
   Heading,
   SubHeading,
@@ -11,6 +12,7 @@ import cars from "../assets/images/cars.svg"
 const IntroPage = () => {
   return (
     <Container>
+        <Background />
       <Illustration
         src={cars}// Replace with your illustration URL
         alt="Illustration"
