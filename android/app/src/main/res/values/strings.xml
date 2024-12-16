@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">RDGo</string>
+    <string name="title_activity_main">RDGo</string>
+    <string name="package_name">com.rdgo.cabbooking</string>
+    <string name="custom_url_scheme">com.rdgo.cabbooking</string>
+</resources>
