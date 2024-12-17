@@ -1,5 +1,5 @@
 {
   "appId": "com.rdgo.cabbooking",
   "appName": "RDGo",
-  "webDir": "www.RDGo.com"
+  "webDir": "dist"
 }
