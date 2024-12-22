@@ -1,196 +1,218 @@
 import styled from "styled-components";
 
-// Container for the entire page
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  background: #f9f9f9;
-  position: relative;
-  
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
+  height: 100vh;
+  font-family: Arial, sans-serif;
 `;
 
-// Header section with logo and menu icon
 export const Header = styled.header`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 15px;
-  background: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  z-index: 10;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #0078d7;
+  color: white;
 `;
 
-// Logo section with an icon
 export const Logo = styled.div`
   display: flex;
   align-items: center;
-  font-size: 20px;
-  color: #333;
+  font-size: 1.5rem;
+  font-weight: bold;
 
   svg {
-    margin-right: 8px;
+    margin-right: 0.5rem;
   }
 `;
 
-// Menu Icon (hamburger) to toggle the sidebar
 export const MenuIcon = styled.div`
-  font-size: 24px;
+  font-size: 1.5rem;
   cursor: pointer;
 `;
 
-// Side Menu (Open on the left side)
 export const SideMenu = styled.div`
   position: fixed;
   top: 0;
-  left: ${({ menuOpen }) => (menuOpen ? "0" : "-250px")};
+  left: 0;
   width: 250px;
   height: 100%;
-  background: white;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  transition: left 0.3s ease-in-out;
-
-  @media (max-width: 768px) {
-    width: 200px;
-  }
+  background-color: #fff;
+  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
+  transform: translateX(-100%); /* Initially off-screen to the left */
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000; /* Ensure it's above the content */
+  
+  /* When the menu is open, slide the menu in */
+  ${({ menuOpen }) => menuOpen && `
+    transform: translateX(0);
+  `}
 `;
 
-// Individual menu item inside the sidebar
+
+
 export const MenuItem = styled.div`
+  padding: 1rem;
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 18px;
-  padding: 10px 0;
+  font-size: 1rem;
   cursor: pointer;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #ddd;
+
+  svg {
+    margin-right: 0.5rem;
+  }
 
   &:hover {
-    color: #0078ff;
+    background-color: #0078d7;
+    color: white;
   }
 `;
 
-// SubMenu for expandable menu items (e.g., Profile Settings)
-export const SubMenu = styled.div`
-  padding: 10px 20px;
-  background-color: #f9f9f9;
-  border-left: 4px solid #0078ff;
-  margin-left: 10px;
-  font-size: 14px;
-  color: #333;
-  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  max-height: ${({ isOpen }) => (isOpen ? "200px" : "0")};
-  overflow: hidden;
-  opacity: ${({ isOpen }) => (isOpen ? "1" : "0")};
-`;
-
-// Content that appears when a menu item is selected (right panel)
 export const SidebarContent = styled.div`
-  position: fixed;
+  position: fixed; /* Ensures the sidebar is fixed over the map */
   top: 0;
-  left: ${({ isVisible }) => (isVisible ? "0" : "-250px")};
+  right: 0;
+  width: 100%;
+  max-width: 400px;
   height: 100%;
-  width: 250px;
-  background: white;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  z-index: 200;
-  padding: 20px;
-  transition: left 0.3s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  background-color: white; /* Main sidebar background */
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1); /* Sidebar shadow */
+  overflow-y: auto; /* Enables scrolling if content exceeds viewport height */
+  padding: 1rem; /* Inner padding for the content */
 
+  /* Responsive styling for smaller screens */
   @media (max-width: 768px) {
-    width: 200px;
+    width: 80%; /* Take up less width on smaller devices */
   }
+
+  @media (max-width: 480px) {
+    width: 100%; /* Full width on very small devices */
+  }
+
+  z-index: 1000; /* Ensures it appears above other elements like the map */
 `;
 
 
-// Map section where the Google Map will be displayed
+export const SearchSection = styled.div`
+  display: flex;
+  padding: 1rem;
+  background-color: #0078d7;
+`;
+
+export const SearchBar = styled.input`
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+
+  &::placeholder {
+    color: #aaa;
+  }
+`;
+
 export const MapContainer = styled.div`
   flex: 1;
   position: relative;
+  height: 300px;
+  transition: height 0.3s ease, margin-left 0.3s ease;
 
-  & > div {
-    height: 100%;
+  /* When the menu is open, adjust the height and shift the content */
+  ${({ menuOpen }) =>
+    menuOpen &&
+    `
+    margin-left: 250px; /* Make space for the sidebar */
+    height: 250px; /* Reduce height when sidebar is open */
+  `}
+
+  /* Media Query for Larger Screens */
+  @media (min-width: 768px) {
+    height: 400px;
+  }
+
+  /* Media Query for Smaller Screens (Mobile Devices) */
+  @media (max-width: 768px) {
+    height: 250px;
   }
 `;
 
-// Search section where users can search for locations
-export const SearchSection = styled.div`
-  padding: 15px;
-  background: white;
+export const ExploreSection = styled.section`
+  padding: 1rem;
 `;
 
-// Search Bar input
-export const SearchBar = styled.input`
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 25px;
-  outline: none;
-  transition: box-shadow 0.3s ease;
-
-  &:focus {
-    box-shadow: 0 0 8px rgba(0, 120, 255, 0.6);
-  }
-
-  &::placeholder {
-    color: #999;
-  }
-`;
-
-// Explore section with category items like "Bike", "Auto", etc.
-export const ExploreSection = styled.div`
-  padding: 20px;
-  background: #ffffff;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-`;
-
-// Section title in the Explore section
 export const SectionTitle = styled.h2`
-  font-size: 24px;
-  margin-bottom: 20px;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
   color: #333;
 `;
 
-// Grid layout for the Explore section (Bike, Auto, Cab, etc.)
 export const ExploreGrid = styled.div`
-  display: flex;
-  gap: 15px;
-  justify-content: space-around;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1rem;
 `;
 
-// Individual item in the Explore section (e.g., Bike, Auto)
 export const ExploreItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.5rem;
   text-align: center;
-  gap: 5px;
-  font-size: 14px;
+  cursor: pointer;
 
   img {
-    width: 80px;
-    height: 80px;
-    transition: transform 0.3s ease;
+    width: 100%;
+    max-width: 80px;
+    height: auto;
+    margin-bottom: 0.5rem;
+  }
 
-    &:hover {
-      transform: scale(1.2);
-    }
+  &:hover {
+    background-color: #0078d7;
+    color: white;
+  }
+`;
+
+export const SubMenuSlide = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  background: white;
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
+  transform: ${({ slideOpen }) => (slideOpen ? "translateX(0)" : "translateX(100%)")};
+  transition: transform 0.3s ease-in-out;
+  padding: 1rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
+
+export const BackButton = styled.button`
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #0078d7;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+
+  svg {
+    margin-right: 0.5rem;
+  }
+
+  &:hover {
+    background-color: #005bb5;
   }
 `;

@@ -5,4 +5,5 @@ export { default as Login } from './Login';
 export {default as IntroPage} from './IntroPage'
 export {default as SignUp} from './SignUp'
 export {default as HomeLayout} from './HomeLayout'
+export {default as Logout} from './Logout'
 // export { default as Error } from './Error';

@@ -1,5 +1,4 @@
-//signup
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Ensure this is imported
 import {
   Container,
@@ -24,6 +23,14 @@ function SignUp() {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate(); // Use useNavigate hook
+
+  useEffect(() => {
+    // Check if the user is already verified and redirect
+    const isVerified = sessionStorage.getItem("isVerified");
+    if (isVerified) {
+      navigate("/home"); // Redirect to home if already verified
+    }
+  }, [navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -83,6 +90,7 @@ function SignUp() {
       const result = await response.json();
       if (result.message === "Phone number verified and user registered successfully.") {
         alert("Phone number verified successfully!");
+        sessionStorage.setItem("isVerified", "true"); // Store verification status in session storage
         navigate("/home"); // Redirect to homepage after successful verification
       } else {
         alert(result.message || "Invalid OTP.");
